@@ -1,0 +1,56 @@
+accueil:
+    path:      /
+    defaults:
+        _controller: LHgsbFraisBundle:Default:index
+
+indexFiche:
+    path:    Visiteur/moisFiche
+    defaults:
+        _controller: LHgsbFraisBundle:Visiteur:index
+
+viewFiche:
+    path:    Visiteur/maFiche/{moisCourant}
+    defaults:
+        _controller: LHgsbFraisBundle:Visiteur:view
+    requirements:
+        moisCourant: '[a-zA-Z0-9-_\/.]+'
+
+addFiche:
+    path:    Visiteur/add
+    defaults:
+      _controller: LHgsbFraisBundle:Visiteur:add
+
+deleteHf:
+    path:    Visiteur/deleteHf?id={id}
+    defaults:
+      _controller: LHgsbFraisBundle:Visiteur:delete
+
+choixVisiteur:
+    path:    Comptable/choixVisiteur
+    defaults:
+      _controller: LHgsbFraisBundle:Comptable:choixVisiteur
+
+validFiche:
+    path:    Comptable/validFiche/{mois}/{idvisiteur}
+    defaults:
+      _controller: LHgsbFraisBundle:Comptable:valid
+
+validation:
+    path:    Comptable/validation/{mois}/{idvisiteur}
+    defaults:
+      _controller: LHgsbFraisBundle:Comptable:validation
+
+refuserHf:
+    path:    Comptable/refuserHf?id={id}
+    defaults:
+      _controller: LHgsbFraisBundle:Comptable:refus
+
+suiviPaiement:
+    path:    Comptable/suiviPaiement
+    defaults:
+      _controller: LHgsbFraisBundle:Comptable:suiviPaiement
+
+rembourser:
+    path:    Comptable/rembourser?idvisiteur={idvisiteur}&mois={mois}
+    defaults:
+      _controller: LHgsbFraisBundle:Comptable:rembourser

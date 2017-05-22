@@ -1,0 +1,3 @@
+services:
+    LHgsbFraisBundle.antispam:
+        class: LH\gsbFraisBundle\Antispam\LHAntispam

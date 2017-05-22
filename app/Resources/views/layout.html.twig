@@ -1,0 +1,37 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}{% endblock %}</title>
+
+  {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('bundles/gsbfrais/css/main.css')}}">
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+  {% endblock %}
+</head>
+
+<body>  {% block body %} {% endblock %}
+
+
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="{{asset('bundles/gsbfrais/js/jquery.scrolly.min.js')}}"></script>
+	  <script src="{{asset('bundles/gsbfrais/js/jquery.scrollzer.min.js')}}"></script>
+		<script src="{{asset('bundles/gsbfrais/js/skel.min.js')}}"></script>
+		<script src="{{asset('bundles/gsbfrais/js/util.js')}}"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="{{asset('bundles/gsbfrais/js/main.js')}}"></script>
+
+  {% endblock %}
+
+</body>
+</html>

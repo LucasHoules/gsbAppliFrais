@@ -1,0 +1,26 @@
+{% extends "LHgsbFraisBundle::layout.html.twig"%}
+
+{% block userConnected %}{% endblock %}
+
+{% block menu %}
+  <li><a href="{{path('login')}}" id="user-link" class="skel-layers-ignoreHref active"><span class="icon fa-user">Connexion</span></a></li>
+{% endblock %}
+{%block LHgsbFraisBundle_body %}
+
+<div id="main">
+<section id="top" class="one dark cover">
+{% if error %}
+
+  <div class="alert alert-danger">Mot de passe Incorrect !</div>
+{% endif%}
+    <form action="{{ path('login_check') }}" method="post">
+    <label for="username">Login :</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="_password" />
+    <br />
+    <input type="submit" value="Connexion" />
+  </form>
+</section>
+</div>
+{% endblock %}

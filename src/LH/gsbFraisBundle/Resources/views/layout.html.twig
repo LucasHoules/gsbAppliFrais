@@ -1,0 +1,32 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+  GSB Frais
+{% endblock %}
+
+{% block body %}
+<!-- Header -->
+  <div id="header">
+    <div class="top">
+      <!-- Logo -->
+        <div id="logo">
+          <span class="image avatar48"><img src="{{asset('bundles/gsbfrais/images/gsbLogo.png')}}" alt="" /></span>
+          <h1 id="title">GSB Frais</h1>
+          <p>Plateforme {%if is_granted('ROLE_VISITEUR')%}- Visiteur {%elseif is_granted('ROLE_COMPTABLE')%}- Comptable {%endif%}</p>
+          <span class="UserConnected">{% block userConnected %} {{app.user.nom}} - {{app.user.prenom}}{% endblock %}</span>
+        </div>
+        <!-- Nav -->
+				<nav id="nav">
+					<ul>
+              {% block menu  %}
+
+							{% endblock %}
+					</ul>
+				</nav>
+			</div>
+  </div>
+
+  {% block LHgsbFraisBundle_body %}
+  {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "LHgsbFraisBundle::layout.html.twig" %}
+
+{% block title %}
+  Suivre paiement - {{ parent() }}
+{% endblock %}
+
+{% block menu %}
+<li><a href="{{path('accueil')}}" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Accueil</span></a></li>
+{%if is_granted('ROLE_VISITEUR')%}
+  <li><a href="{{path('addFiche')}}" id="top-link saisirFiche" class="skel-layers-ignoreHref"><span class="icon fa-th">Saisie fiche de frais</span></a></li>
+  <li><a href="{{path('indexFiche')}}" id="top-link mesFiches" class="skel-layers-ignoreHref"><span class="icon fa-th">Mes fiche de frais</span></a></li>
+{%elseif is_granted('ROLE_COMPTABLE')%}
+      <li><a href="{{path('choixVisiteur')}}" id="top-link validerFiche" class="skel-layers-ignoreHref "><span class="icon fa-th">Valider fiche</span></a></li>
+      <li><a href="{{path('logout')}}" id="top-link suivrePaiement" class="skel-layers-ignoreHref active"><span class="icon fa-th">Suivre paiement fiche</span></a></li>
+{%endif%}
+<li><a href="{{path('logout')}}" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Déconnexion</span></a></li>
+{% endblock %}
+
+
+
+
+
+
+{% block LHgsbFraisBundle_body  %}
+
+  <div id="main">
+    <!-- Intro -->
+          <section id="top" class="one dark cover">
+            <div class="container">
+            <h2> Liste des fiches de frais valides</h2><hr>
+            <p>Suivi du paiement </p>
+          </section>
+            <div class="paiement">
+              {% for flashMessage in app.session.flashbag.get('success') %}
+                <br><div class="alert alert-success">{{ flashMessage }}</div>
+              {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+              <br><div class="alert alert-danger">{{ flashMessage }}</div>
+            {% endfor %}
+            {% for uneffValid in ffValid %}
+            <table class="table table-bordered table-hover table-striped">
+              <br>
+              <tr class="success">
+                <th>Idvisiteur</th>
+                <th>Mois</th>
+                <th>montantvalide</th>
+                <th>Date de mofication</th>
+                <th>Voir la fiche complète</th>
+                <th>Mettre en paiement la fiche</th>
+              </tr>
+              <tr>
+
+                  <td>{{uneffValid.idvisiteur.id}}</td>
+                  <td>  {{uneffValid.mois}}</td>
+                  <td>{{uneffValid.montantvalide}}</td>
+                  <td> {{uneffValid.datemodif|date('d/m/Y')}}</td>
+                  <td><a href="{{path('validFiche', {'idvisiteur' : uneffValid.idvisiteur.id, 'mois' : uneffValid.mois})}}"><span class="glyphicon glyphicon-plus"></span></a> </td>
+                  <td><a href="{{path('rembourser', {'idvisiteur' : uneffValid.idvisiteur.id, 'mois' : uneffValid.mois})}}" onclick="return confirm('Voulez vous mettre en paiement cette fiche de frais ?')"><span class="glyphicon glyphicon-euro"></span></a></td>
+
+              <tr>
+            </table>
+               {% endfor%}
+            </div>
+          </section>
+  </div>
+</div>
+
+
+{% endblock %}

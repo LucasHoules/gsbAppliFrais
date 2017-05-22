@@ -1,0 +1,25 @@
+{% extends "LHgsbFraisBundle::layout.html.twig" %}
+
+{% block title %}
+  choixVisiteur - {{ parent() }}
+{% endblock %}
+
+{% block menu %}
+<li><a href="{{path('accueil')}}" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Accueil</span></a></li>
+{%if is_granted('ROLE_VISITEUR')%}
+  <li><a href="{{path('addFiche')}}" id="top-link saisirFiche" class="skel-layers-ignoreHref"><span class="icon fa-th">Saisie fiche de frais</span></a></li>
+  <li><a href="{{path('indexFiche')}}" id="top-link mesFiches" class="skel-layers-ignoreHref"><span class="icon fa-th">Mes fiche de frais</span></a></li>
+{%elseif is_granted('ROLE_COMPTABLE')%}
+      <li><a href="{{path('choixVisiteur')}}" id="top-link validerFiche" class="skel-layers-ignoreHref "><span class="icon fa-th">Valider fiche</span></a></li>
+      <li><a href="{{path('suiviPaiement')}}" id="top-link suivrePaiement" class="skel-layers-ignoreHref active"><span class="icon fa-th">Suivre paiement fiche</span></a></li>
+{%endif%}
+<li><a href="{{path('logout')}}" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Déconnexion</span></a></li>
+{% endblock %}
+
+{% block LHgsbFraisBundle_body  %}
+
+{{form_start(form)}}
+{{form_end(form)}}
+{% endblock %}
+
+{% endblock %}
